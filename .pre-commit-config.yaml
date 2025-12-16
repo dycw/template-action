@@ -27,6 +27,7 @@ repos:
     rev: v0.9.3
   - hooks:
       - args:
+          - --github--push--tag
           - --pre-commit--prettier
           - --pre-commit--ruff
           - --pre-commit--taplo
