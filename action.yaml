@@ -30,6 +30,6 @@ runs:
 
     - name: Run 'script.py'
       env:
-        GITHUB_TOKEN: ${{ inputs.token }}
+        APP_TOKEN: ${{ inputs.token }}
       run: uv run abc/script.py
       shell: bash
