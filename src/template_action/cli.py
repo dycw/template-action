@@ -5,11 +5,11 @@ from rich.pretty import pretty_repr
 from typed_settings import EnvLoader, click_options
 from utilities.click import CONTEXT_SETTINGS
 from utilities.logging import basic_config
-from uv_publish.logging import LOGGER
-from uv_publish.settings import Settings
 
 from template_action import __version__
 from template_action.lib import template_action
+from template_action.logging import LOGGER
+from template_action.settings import Settings
 
 
 @command(**CONTEXT_SETTINGS)
