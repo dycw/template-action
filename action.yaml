@@ -29,14 +29,14 @@ runs:
       with:
         python-version: 3.13
 
-    - name: Install 'dycw-template-action'
-      run: uv tool install --reinstall dycw-template-action
+    - name: Install 'dycw-actions'
+      run: uv tool install --reinstall dycw-actions
       shell: bash
 
-    - name: Run 'template-action'
+    - name: Run 'action abc'
       env:
         TOKEN: ${{ inputs.token }}
         FLAG: ${{ inputs.flag }}
         DRY_RUN: ${{ inputs.dry-run }}
-      run: uv tool run --from dycw-template-action --isolated template-action
+      run: uv tool run --from dycw-actions --isolated action abc
       shell: bash
