@@ -9,6 +9,12 @@ inputs:
   token:
     description: GitHub Personal Access Token
     default: ${{ github.token }}
+  flag:
+    description: Example flag
+    default: false
+  dry-run:
+    description: Dry run the CLI
+    default: false
 
 runs:
   using: composite
@@ -18,18 +24,19 @@ runs:
       with:
         fetch-depth: 0
 
-    - name: Check out 'dycw/action-abc'
-      uses: actions/checkout@v6
-      with:
-        repository: dycw/action-abc
-        fetch-depth: 0
-        path: abc
-
     - name: Install 'uv'
       uses: astral-sh/setup-uv@v7
+      with:
+        python-version: 3.13
 
-    - name: Run 'script.py'
+    - name: Install 'dycw-template-action'
+      run: uv tool install --reinstall dycw-template-action
+      shell: bash
+
+    - name: Run 'template-action'
       env:
-        APP_TOKEN: ${{ inputs.token }}
-      run: uv run abc/script.py
+        TOKEN: ${{ inputs.token }}
+        FLAG: ${{ inputs.flag }}
+        DRY_RUN: ${{ inputs.dry-run }}
+      run: uv tool run --from dycw-template-action --isolated template-action
       shell: bash
