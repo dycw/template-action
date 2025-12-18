@@ -3,11 +3,23 @@
   requires = ["uv_build"]
 
 [project]
+  dependencies = [
+    "click >=8.3.1, <8.4",
+    "dycw-utilities >=0.170.0, < 0.171",
+    "rich>=14.2.0, <14.3",
+    "typed-settings[attrs, click] >=25.3.0, <25.4",
+  ]
   description = "Template for Python actions"
-  name = "dycw-action-template"
+  name = "dycw-template-action"
   readme = "README.md"
   requires-python = ">= 3.13"
   version = "0.1.0"
 
 [dependency-groups]
   dev = ["dycw-utilities[test]", "rich"]
+
+[tool]
+  [tool.uv]
+    [tool.uv.build-backend]
+      module-name = "template_action"
+      module-root = "src"
