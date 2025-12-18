@@ -1,3 +1,3 @@
-# `template-script`
+# `template-action`
 
-Template for Python scripts
+Template for Python actions

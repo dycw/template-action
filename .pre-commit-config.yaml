@@ -25,6 +25,7 @@ repos:
     rev: v0.9.3
   - hooks:
       - args:
+          - --description=Template for Python actions
           - --github--push--publish
           - --github--push--publish--trusted-publishing
           - --github--push--tag
@@ -43,10 +44,12 @@ repos:
           - --pyright--include=src
           - --pytest
           - --pytest--test-paths=src/tests
+          - --readme
+          - --repo-name=template-action
           - --ruff
         id: nitpick
     repo: https://github.com/dycw/pre-commit-hook-nitpick
-    rev: 0.3.12
+    rev: 0.3.19
   - hooks:
       - id: check-executables-have-shebangs
       - id: check-merge-conflict
