@@ -2,6 +2,9 @@
   build-backend = "uv_build"
   requires = ["uv_build"]
 
+[dependency-groups]
+  dev = ["dycw-utilities[test]", "rich"]
+
 [project]
   dependencies = [
     "click >=8.3.1, <8.4",
@@ -17,10 +20,6 @@
 
   [project.scripts]
     template-action = "template_action.cli:_main"
-
-
-[dependency-groups]
-  dev = ["dycw-utilities[test]", "rich"]
 
 [tool]
   [tool.uv]
