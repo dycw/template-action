@@ -27,23 +27,28 @@ repos:
     rev: v0.9.3
   - hooks:
       - args:
+          - --github--push--publish
+          - --github--push--publish--trusted-publishing
           - --github--push--tag
           - --github--push--tag--major-minor
           - --github--push--tag--major
           - --github--push--tag--latest
+          - --python-version=3.13
           - --pre-commit--prettier
           - --pre-commit--ruff
           - --pre-commit--taplo
           - --pre-commit--uv
-          - --pre-commit--uv--script=script.py
           - --pyright
-          - --pyright--include=script.py
+          - --pyproject
+          - --pyproject--project--name=dycw-action-template
+          - --pyright
+          - --pyright--include=src
           - --pytest
-          - --pytest--test-paths=tests
+          - --pytest--test-paths=src/tests
           - --ruff
         id: nitpick
     repo: https://github.com/dycw/pre-commit-hook-nitpick
-    rev: 0.3.4
+    rev: 0.3.12
   - hooks:
       - id: check-executables-have-shebangs
       - id: check-merge-conflict
