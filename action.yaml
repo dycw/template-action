@@ -9,11 +9,11 @@ inputs:
   token:
     description: GitHub Personal Access Token
     default: ${{ github.token }}
-  flag:
-    description: Example flag
-    default: false
   dry-run:
     description: Dry run the CLI
+    default: false
+  flag:
+    description: Example flag
     default: false
 
 runs:
