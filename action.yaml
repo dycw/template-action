@@ -33,7 +33,6 @@ runs:
     - name: Run 'action abc'
       env:
         TOKEN: ${{ inputs.token }}
-        DRY_RUN: ${{ inputs.dry-run }}
         FLAG: ${{ inputs.flag }}
       run: uv tool run --from dycw-actions --isolated action abc
       shell: bash
