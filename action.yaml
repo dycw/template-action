@@ -6,8 +6,14 @@ branding:
   color: gray-dark
 
 inputs:
-  token:
-    description: GitHub Personal Access Token
+  token-checkout:
+    description: Personal access token (PAT) used to fetch the repository
+    default: ${{github.token}}
+  token-uv:
+    description: Personal access token (PAT) used to download uv
+    default: ${{github.token}}
+  token-action:
+    description: Personal access token (PAT) used for the action
     default: ${{github.token}}
   flag:
     description: Example flag
@@ -18,9 +24,13 @@ runs:
   steps:
     - name: Check out repo
       uses: actions/checkout@v6
+      with:
+        token: ${{inputs.token-checkout}}
 
     - name: Install 'uv'
       uses: astral-sh/setup-uv@v7
+      with:
+        github-token: ${{inputs.token-uv}}
 
     - name: Install 'dycw-actions'
       run: uv tool install --reinstall dycw-actions
@@ -28,7 +38,7 @@ runs:
 
     - name: Run 'action abc'
       env:
-        TOKEN: ${{inputs.token}}
+        TOKEN: ${{inputs.token-action}}
         FLAG: ${{inputs.flag}}
       run: uv tool run --from dycw-actions --isolated action abc
       shell: bash
