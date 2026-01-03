@@ -12,6 +12,9 @@ inputs:
   token-uv:
     description: Personal access token (PAT) used to download uv
     default: ${{github.token}}
+  token-action:
+    description: Personal access token (PAT) used for the action
+    default: ${{github.token}}
   flag:
     description: Example flag
     default: false
@@ -35,7 +38,7 @@ runs:
 
     - name: Run 'action abc'
       env:
-        TOKEN: ${{inputs.token}}
+        TOKEN: ${{inputs.token-action}}
         FLAG: ${{inputs.flag}}
       run: uv tool run --from dycw-actions --isolated action abc
       shell: bash
