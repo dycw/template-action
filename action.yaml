@@ -26,12 +26,8 @@ runs:
       with:
         github-token: ${{inputs.token}}
 
-    - name: Install 'dycw-actions'
-      run: uv tool install --reinstall dycw-actions
-      shell: bash
-
-    - name: Run 'action abc'
+    - name: Run 'cli abc'
       env:
         FLAG: ${{inputs.flag}}
-      run: uv tool run --from dycw-actions --isolated action abc
+      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow cli abc
       shell: bash
