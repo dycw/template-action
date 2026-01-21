@@ -29,5 +29,5 @@ runs:
     - name: Run 'cli abc'
       env:
         FLAG: ${{inputs.flag}}
-      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow cli abc
+      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli abc
       shell: bash
