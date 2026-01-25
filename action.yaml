@@ -11,7 +11,10 @@ inputs:
     default: ${{github.token}}
   flag:
     description: Example flag
-    default: false
+    default:
+  option:
+    description: Example option
+    default:
 
 runs:
   using: composite
@@ -27,7 +30,19 @@ runs:
         github-token: ${{inputs.token}}
 
     - name: Run 'cli abc'
-      env:
-        FLAG: ${{inputs.flag}}
-      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli abc
+      run: |
+        set -euo pipefail
+        args=(uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli abc)
+        flag="${{inputs.flag}}"
+        if [[ "${flag,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--flag)
+        fi
+        option="${{inputs.option}}"
+        if [[ "${option,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--option "${option}")
+        fi
+        echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
+        printf '%q ' "${args[@]}"
+        echo
+        "${args[@]}"
       shell: bash
