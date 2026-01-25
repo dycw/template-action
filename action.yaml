@@ -9,6 +9,9 @@ inputs:
   token:
     description: Personal access token (PAT)
     default: ${{github.token}}
+  flag:
+    description: Example flag
+    default:
   option:
     description: Example option
     default:
@@ -30,8 +33,13 @@ runs:
       run: |
         set -euo pipefail
         args=(uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli abc)
-        if [ -n "${{inputs.option}}" ]; then
-          args+=(--option "${{inputs.option}}")
+        flag="${{inputs.flag}}"
+        if [[ "${flag,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--flag)
+        fi
+        option="${{inputs.option}}"
+        if [[ "${option,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+          args+=(--option "${option}")
         fi
         echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
         printf '%q ' "${args[@]}"
