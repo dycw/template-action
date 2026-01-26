@@ -38,7 +38,7 @@ runs:
           args+=(--flag)
         fi
         option="${{inputs.option}}"
-        if [[ "${option,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+        if [[ -n "${option}" ]]; then
           args+=(--option "${option}")
         fi
         echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
