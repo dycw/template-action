@@ -11,7 +11,7 @@ inputs:
     default: ${{github.token}}
   flag:
     description: Example flag
-    default:
+    default: false
   option:
     description: Example option
     default:
@@ -35,7 +35,7 @@ runs:
         set -euo pipefail
         args=(uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli abc)
         flag="${{inputs.flag}}"
-        if [[ "${flag,,}" =~ ^(true|1|yes|on|t|y)$ ]]; then
+        if [[ "${flag}" =~ ^[Tt][Rr][Uu][Ee]$ ]]; then
           args+=(--flag)
         fi
         option="${{inputs.option}}"
